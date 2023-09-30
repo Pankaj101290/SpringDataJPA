@@ -76,4 +76,19 @@ public class Demoservice {
 		return list;
 	}
 
+	public String findManyStudents(Iterable<Integer> id) {
+		Iterable<StudentDemo> findAllById = demoRepo.findAllById(id);
+		List<StudentDemo> sDemos = new ArrayList<>();
+		for (StudentDemo s : findAllById) {
+			sDemos.add(s);
+		}
+		return sDemos.toString();
+
+	}
+
+	public String deleteAllStudents() {
+		demoRepo.deleteAll();
+		return "All students deleted successfully";
+	}
+
 }
