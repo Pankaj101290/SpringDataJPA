@@ -31,13 +31,19 @@ public class SpringDataJpaDemoApplication {
 
 		StudentDemo sd1 = new StudentDemo(8, "Raj", "Solapur");
 		Demoservice bean1 = context.getBean(Demoservice.class);
-		//System.out.println(bean1.insertStudent(sd1));
+		// System.out.println(bean1.insertStudent(sd1));
 
 		// System.out.println(bean1.getStudent(sd1));
-		
+
 		// System.out.println(bean1.getStudent1(8));
 
-		System.out.println(bean1.updateStudent(sd1));
+		// System.out.println(bean1.updateStudent(sd1));
+
+		// System.out.println(bean1.deleteStuudentById(8));
+
+		//System.out.println(bean1.deleteStuudentEntity(7));
+		
+		System.out.println(bean1.readAllStudent());
 	}
 
 }

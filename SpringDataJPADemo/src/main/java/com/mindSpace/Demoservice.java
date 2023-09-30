@@ -1,5 +1,7 @@
 package com.mindSpace;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,9 +48,32 @@ public class Demoservice {
 			throw new RuntimeException("No student found hence we cant update student for id :" + sd.getId());
 		}
 	}
-	public String deleteStuudent(Integer id) {
-		demoRepo.deleteById(id);
-		return "Student deleted successfully";
-		
+
+	public String deleteStuudentById(Integer id) {
+		Optional<StudentDemo> o = demoRepo.findById(id);
+		if (o.isPresent()) {
+			demoRepo.deleteById(id);
+			return "Student deleted successfully";
+		} else {
+			return "No student found for id: " + id;
+		}
 	}
+
+	public String deleteStuudentEntity(Integer id) {
+		Optional<StudentDemo> o = demoRepo.findById(id);
+		StudentDemo demo = o
+				.orElseThrow(() -> new RuntimeException("No student found hence we cant delete student for id :" + id));
+		demoRepo.delete(demo);
+		return "Student deleted successfully";
+	}
+
+	public List<StudentDemo> readAllStudent() {
+		Iterable<StudentDemo> allStudents = demoRepo.findAll();
+		List<StudentDemo> list = new ArrayList<StudentDemo>();
+		for (StudentDemo d : allStudents) {
+			list.add(d);
+		}
+		return list;
+	}
+
 }
